@@ -1,0 +1,27 @@
+from datetime import datetime
+
+log_file = "colab_keystrokes_log.txt"
+
+print("Keylogger Simulation Started in Colab")
+print("Type your text below. Type 'EXIT' to stop.\n")
+
+# Create session header
+with open(log_file, "a") as f:
+    f.write("\n==============================\n")
+    f.write(f" Colab Keylogger Session Started: {datetime.now()}\n")
+    f.write("==============================\n\n")
+
+while True:
+    text = input("Enter keys: ")
+
+    if text.upper() == "EXIT":
+        print("Logging stopped.")
+        with open(log_file, "a") as f:
+            f.write("Session Ended by user.\n")
+        break
+
+    # Log the input with timestamp
+    with open(log_file, "a") as f:
+        f.write(f"{datetime.now()} - {text}\n")
+
+print("\nYour log has been saved as:", log_file)
